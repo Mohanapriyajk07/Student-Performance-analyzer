@@ -1,0 +1,123 @@
+================================================================================
+ Student Performance Analyzer — Test Observations
+================================================================================
+Date: 2026-02-18
+
+================================================================================
+ TEST SCENARIO 1: Normal Dataset (student_data.csv — 12 students)
+================================================================================
+Input:
+  - 12 students with varying marks (30–98) and attendance (60–98%)
+
+Expected Results:
+  - Total Students: 12
+  - Top Performers (avg >= 85 AND attendance >= 90):
+      Jane Smith      (avg 92.2, attendance 96%)
+      Diana Evans     (avg 87.8, attendance 94%)
+      Fiona Green     (avg 95.0, attendance 98%)
+  - At-Risk Students (avg < 40 OR attendance < 75):
+      Bob Johnson     (avg 50.0, attendance 70%)  → low attendance
+      Charlie Davis   (avg 40.0, attendance 65%)  → low attendance
+      George Black    (avg 55.8, attendance 72%)  → low attendance
+      Hannah Blue     (avg 34.2, attendance 60%)  → both low marks & attendance
+  - Subject Averages should be computed correctly for Math, Science, English,
+    History, Geography.
+
+Observation:
+  - [ ] All values display correctly
+  - [ ] Top performers list is accurate
+  - [ ] At-risk students list is accurate
+  - [ ] Subject bar chart renders with correct percentages
+
+================================================================================
+ TEST SCENARIO 2: Low Attendance Student
+================================================================================
+Input:
+  CSV with a student who has high marks (avg > 85) but low attendance (< 75%)
+
+Expected Result:
+  - Student should appear in At-Risk list (attendance rule triggers)
+  - Student should NOT appear in Top Performers (needs attendance >= 90)
+
+Observation:
+  - [ ] At-risk identification is correct despite high marks
+  - [ ] Not mistakenly listed as top performer
+
+================================================================================
+ TEST SCENARIO 3: All Students Passing (No At-Risk)
+================================================================================
+Input:
+  CSV where every student has avg >= 40 AND attendance >= 75
+
+Expected Result:
+  - At-Risk section shows: "No at-risk students found. All students are
+    performing well!" message
+  - Summary card shows At-Risk count = 0
+
+Observation:
+  - [ ] Empty state message displayed correctly
+  - [ ] Count reflects 0
+
+================================================================================
+ TEST SCENARIO 4: Student Failing All Subjects
+================================================================================
+Input:
+  CSV with a student scoring below 40 in every subject and attendance below 75
+
+Expected Result:
+  - Student appears in At-Risk list
+  - Grade = "F"
+  - Ranked last in the full table
+
+Observation:
+  - [ ] Grade displays as "F" with red styling
+  - [ ] Correctly ranked at bottom of the table
+  - [ ] Listed in at-risk section
+
+================================================================================
+ TEST SCENARIO 5: Empty CSV File
+================================================================================
+Input:
+  An empty .csv file (only headers or completely blank)
+
+Expected Result:
+  - Error message: "The uploaded CSV file is empty."
+  - Results section does NOT appear
+
+Observation:
+  - [ ] Error message displayed clearly
+  - [ ] No crash or blank screen
+
+================================================================================
+ TEST SCENARIO 6: Missing Columns
+================================================================================
+Input:
+  CSV missing the "Attendance %" column
+
+Expected Result:
+  - Error message: "Missing required columns: Attendance %"
+
+Observation:
+  - [ ] Specific missing column(s) named in error
+  - [ ] Upload does not proceed to analysis
+
+================================================================================
+ TEST SCENARIO 7: Non-CSV File Upload
+================================================================================
+Input:
+  Upload a .txt or .xlsx file
+
+Expected Result:
+  - Frontend rejects non-.csv files
+  - If bypassed, backend returns: "Only CSV files are supported."
+
+Observation:
+  - [ ] Frontend file picker filters correctly
+  - [ ] Backend validation catches bad file type
+
+================================================================================
+ NOTES
+================================================================================
+- Basic input validation is implemented to ensure reliability.
+- All thresholds are configurable in backend/app.py (constants at top of file).
+- Analysis is rule-based; no ML libraries are used.

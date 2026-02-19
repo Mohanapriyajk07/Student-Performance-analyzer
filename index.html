@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Performance Analyzer — Insights at a Glance</title>
+    <meta name="description"
+        content="Upload student marks CSV and instantly get performance insights, top performers, at-risk students, and subject-wise analysis." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- ======== Animated Background ======== -->
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- ======== Header ======== -->
+    <header id="app-header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">📊</span>
+                <h1>Student Performance Analyzer</h1>
+            </div>
+            <p class="tagline">Upload. Analyze. Act.</p>
+        </div>
+    </header>
+
+    <!-- ======== Main Content ======== -->
+    <main id="app-main">
+
+        <!-- Upload Section -->
+        <section id="upload-section" class="glass-card upload-card">
+            <div class="upload-header">
+                <span class="section-icon">📁</span>
+                <h2>Upload Student Data</h2>
+                <p>Select a CSV file with student marks &amp; attendance data to begin analysis.</p>
+            </div>
+
+            <form id="upload-form" enctype="multipart/form-data">
+                <div id="drop-zone" class="drop-zone">
+                    <div class="drop-zone-content">
+                        <span class="drop-icon">⬆️</span>
+                        <p class="drop-text">Drag &amp; drop your CSV file here</p>
+                        <p class="drop-subtext">or click to browse</p>
+                    </div>
+                    <input type="file" id="csv-file-input" name="file" accept=".csv" />
+                </div>
+                <div id="file-info" class="file-info hidden">
+                    <span class="file-icon">📄</span>
+                    <span id="file-name" class="file-name"></span>
+                    <button type="button" id="clear-file-btn" class="btn-icon" title="Remove file">✕</button>
+                </div>
+                <button type="submit" id="analyze-btn" class="btn btn-primary" disabled>
+                    <span class="btn-text">🔍 Analyze Performance</span>
+                    <span class="btn-loader hidden">
+                        <span class="spinner"></span> Analyzing…
+                    </span>
+                </button>
+            </form>
+            <div id="error-message" class="error-message hidden"></div>
+        </section>
+
+        <!-- Results Section (hidden until analysis completes) -->
+        <section id="results-section" class="hidden">
+
+            <!-- Summary Cards Row -->
+            <div id="summary-cards" class="summary-cards">
+                <div class="glass-card stat-card stat-total" id="card-total">
+                    <span class="stat-icon">👨‍🎓</span>
+                    <div class="stat-body">
+                        <span class="stat-value" id="stat-total">—</span>
+                        <span class="stat-label">Total Students</span>
+                    </div>
+                </div>
+                <div class="glass-card stat-card stat-avg" id="card-avg">
+                    <span class="stat-icon">📈</span>
+                    <div class="stat-body">
+                        <span class="stat-value" id="stat-avg">—</span>
+                        <span class="stat-label">Class Average</span>
+                    </div>
+                </div>
+                <div class="glass-card stat-card stat-top" id="card-top-count">
+                    <span class="stat-icon">🏆</span>
+                    <div class="stat-body">
+                        <span class="stat-value" id="stat-top-count">—</span>
+                        <span class="stat-label">Top Performers</span>
+                    </div>
+                </div>
+                <div class="glass-card stat-card stat-risk" id="card-risk-count">
+                    <span class="stat-icon">⚠️</span>
+                    <div class="stat-body">
+                        <span class="stat-value" id="stat-risk-count">—</span>
+                        <span class="stat-label">At-Risk Students</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subject Averages -->
+            <div class="glass-card section-card" id="subject-section">
+                <div class="section-header">
+                    <span class="section-icon">📚</span>
+                    <h2>Subject-wise Class Averages</h2>
+                </div>
+                <div id="subject-bars" class="subject-bars"></div>
+            </div>
+
+            <!-- Top Performers -->
+            <div class="glass-card section-card" id="top-section">
+                <div class="section-header">
+                    <span class="section-icon">🌟</span>
+                    <h2>Top Performers</h2>
+                    <p class="section-subtitle">Average ≥ 85% &amp; Attendance ≥ 90%</p>
+                </div>
+                <div id="top-performers-list" class="student-cards"></div>
+                <p id="no-top" class="empty-state hidden">No top performers found with current criteria.</p>
+            </div>
+
+            <!-- At-Risk Students -->
+            <div class="glass-card section-card" id="risk-section">
+                <div class="section-header">
+                    <span class="section-icon">🚨</span>
+                    <h2>At-Risk Students</h2>
+                    <p class="section-subtitle">Average &lt; 40% or Attendance &lt; 75%</p>
+                </div>
+                <div id="at-risk-list" class="student-cards"></div>
+                <p id="no-risk" class="empty-state hidden">No at-risk students found. All students are performing well!
+                </p>
+            </div>
+
+            <!-- All Students Table -->
+            <div class="glass-card section-card" id="all-section">
+                <div class="section-header">
+                    <span class="section-icon">📋</span>
+                    <h2>All Students — Ranked by Average</h2>
+                </div>
+                <div class="table-wrapper">
+                    <table id="all-students-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Math</th>
+                                <th>Science</th>
+                                <th>English</th>
+                                <th>History</th>
+                                <th>Geography</th>
+                                <th>Attendance</th>
+                                <th>Average</th>
+                                <th>Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody id="all-students-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Class Highlights -->
+            <div class="glass-card section-card" id="highlights-section">
+                <div class="section-header">
+                    <span class="section-icon">�</span>
+                    <h2>Class Highlights</h2>
+                </div>
+                <div id="highlights" class="highlights-grid"></div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- ======== Footer ======== -->
+    <footer id="app-footer">
+        <p>Student Performance Analyzer &copy; 2026 &mdash; Built for academic insight.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

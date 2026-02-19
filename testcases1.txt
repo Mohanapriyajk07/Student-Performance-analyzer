@@ -1,0 +1,81 @@
+TEST CASE 1: High Performing Student
+
+Input:
+Maths: 85
+Science: 90
+English: 88
+Attendance: 92%
+
+Average:
+= (85 + 90 + 88) / 3
+= 87.6
+
+Expected Output:
+• Student classified as Top Performer
+
+Result:
+PASS
+
+
+TEST CASE 2: Low Marks Student
+
+Input:
+Maths: 30
+Science: 35
+English: 28
+Attendance: 75%
+
+Average:
+= 31
+
+Expected Output:
+• Student classified as At-Risk
+
+Result:
+PASS
+
+TEST CASE 3: Low Attendance Student
+
+Input:
+Maths: 70
+Science: 75
+English: 72
+Attendance: 60%
+
+Expected Output:
+• Student classified as At-Risk (Low Attendance)
+
+Result:
+PASS
+
+TEST CASE 4: Balanced Performance
+
+Input:
+Maths: 60
+Science: 65
+English: 62
+Attendance: 78%
+
+Expected Output:
+• Moderate performance
+• Not classified as Top or At-Risk
+
+Result:
+PASS
+
+TEST CASE 5: Invalid Input
+
+Input:
+Maths: "Ninety"
+Science: 80
+English: 75
+
+Expected Output:
+• Error message displayed
+• System prevents calculation
+
+Result:
+PASS
+
+
+All test cases executed successfully.
