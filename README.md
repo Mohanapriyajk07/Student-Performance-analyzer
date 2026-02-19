@@ -1,4 +1,5 @@
 Student Performance Analyzer – Web Application
+
 🔹 Overview
 The Student Performance Analyzer is a web-based application designed to analyze student academic data and generate meaningful insights. Educational institutions often store marks digitally but lack tools to identify high-performing and at-risk students. This system converts raw academic data into actionable insights using rule-based analysis.
 
@@ -125,3 +126,4 @@ User authentication system
 🔹 Conclusion
 
 The Student Performance Analyzer demonstrates how structured data analysis can support academic decision-making. By transforming raw student records into clear insights, the system helps institutions identify strengths and address performance gaps effectively.
+
