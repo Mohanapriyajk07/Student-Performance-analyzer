@@ -15,14 +15,12 @@
 </head>
 
 <body>
-    <!-- ======== Animated Background ======== -->
     <div class="bg-orbs">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
     </div>
-
-    <!-- ======== Header ======== -->
+    
     <header id="app-header">
         <div class="header-inner">
             <div class="logo">
@@ -32,11 +30,7 @@
             <p class="tagline">Upload. Analyze. Act.</p>
         </div>
     </header>
-
-    <!-- ======== Main Content ======== -->
     <main id="app-main">
-
-        <!-- Upload Section -->
         <section id="upload-section" class="glass-card upload-card">
             <div class="upload-header">
                 <span class="section-icon">📁</span>
@@ -67,11 +61,7 @@
             </form>
             <div id="error-message" class="error-message hidden"></div>
         </section>
-
-        <!-- Results Section (hidden until analysis completes) -->
         <section id="results-section" class="hidden">
-
-            <!-- Summary Cards Row -->
             <div id="summary-cards" class="summary-cards">
                 <div class="glass-card stat-card stat-total" id="card-total">
                     <span class="stat-icon">👨‍🎓</span>
@@ -102,8 +92,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Subject Averages -->
             <div class="glass-card section-card" id="subject-section">
                 <div class="section-header">
                     <span class="section-icon">📚</span>
@@ -111,8 +99,6 @@
                 </div>
                 <div id="subject-bars" class="subject-bars"></div>
             </div>
-
-            <!-- Top Performers -->
             <div class="glass-card section-card" id="top-section">
                 <div class="section-header">
                     <span class="section-icon">🌟</span>
@@ -122,8 +108,6 @@
                 <div id="top-performers-list" class="student-cards"></div>
                 <p id="no-top" class="empty-state hidden">No top performers found with current criteria.</p>
             </div>
-
-            <!-- At-Risk Students -->
             <div class="glass-card section-card" id="risk-section">
                 <div class="section-header">
                     <span class="section-icon">🚨</span>
@@ -134,8 +118,6 @@
                 <p id="no-risk" class="empty-state hidden">No at-risk students found. All students are performing well!
                 </p>
             </div>
-
-            <!-- All Students Table -->
             <div class="glass-card section-card" id="all-section">
                 <div class="section-header">
                     <span class="section-icon">📋</span>
@@ -162,8 +144,6 @@
                     </table>
                 </div>
             </div>
-
-            <!-- Class Highlights -->
             <div class="glass-card section-card" id="highlights-section">
                 <div class="section-header">
                     <span class="section-icon">�</span>
@@ -174,13 +154,10 @@
 
         </section>
     </main>
-
-    <!-- ======== Footer ======== -->
     <footer id="app-footer">
         <p>Student Performance Analyzer &copy; 2026 &mdash; Built for academic insight.</p>
     </footer>
 
     <script src="app.js"></script>
 </body>
-
 </html>
