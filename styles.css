@@ -1,8 +1,3 @@
-/* ===================================================================
-   Student Performance Analyzer — Premium Design System
-   =================================================================== */
-
-/* ---------- CSS Custom Properties ---------- */
 :root {
     /* Palette — deep indigo / violet accent */
     --bg-start: #0f0c29;
@@ -37,7 +32,6 @@
     --font: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* ---------- Reset & Base ---------- */
 *,
 *::before,
 *::after {
@@ -60,7 +54,6 @@ body {
     position: relative;
 }
 
-/* ---------- Animated Background Orbs ---------- */
 .bg-orbs {
     position: fixed;
     inset: 0;
@@ -120,7 +113,6 @@ body {
     }
 }
 
-/* ---------- Layout Wrappers ---------- */
 header,
 main,
 footer {
@@ -128,7 +120,6 @@ footer {
     z-index: 1;
 }
 
-/* ---------- Header ---------- */
 #app-header {
     text-align: center;
     padding: 56px 24px 32px;
@@ -180,7 +171,6 @@ footer {
     letter-spacing: 0.5px;
 }
 
-/* ---------- Glass Card ---------- */
 .glass-card {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -196,14 +186,12 @@ footer {
     box-shadow: 0 12px 40px var(--glass-shadow);
 }
 
-/* ---------- Main ---------- */
 #app-main {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 24px 60px;
 }
 
-/* ---------- Upload Section ---------- */
 .upload-card {
     padding: 40px;
     text-align: center;
@@ -231,7 +219,6 @@ footer {
     font-size: 0.92rem;
 }
 
-/* Drop zone */
 .drop-zone {
     position: relative;
     border: 2px dashed var(--glass-border);
@@ -273,7 +260,6 @@ footer {
     margin-top: 4px;
 }
 
-/* File info strip */
 .file-info {
     display: flex;
     align-items: center;
@@ -308,7 +294,6 @@ footer {
     color: var(--red);
 }
 
-/* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -340,7 +325,6 @@ footer {
     cursor: not-allowed;
 }
 
-/* Spinner */
 .spinner {
     display: inline-block;
     width: 16px;
@@ -357,7 +341,6 @@ footer {
     }
 }
 
-/* Error */
 .error-message {
     margin-top: 16px;
     padding: 12px 18px;
@@ -368,13 +351,10 @@ footer {
     font-weight: 500;
     font-size: 0.92rem;
 }
-
-/* ---------- Utility ---------- */
 .hidden {
     display: none !important;
 }
 
-/* ---------- Summary Cards ---------- */
 .summary-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -458,7 +438,6 @@ footer {
     }
 }
 
-/* ---------- Section Cards ---------- */
 .section-card {
     padding: 32px;
     margin-bottom: 28px;
@@ -489,7 +468,6 @@ footer {
     font-size: 0.88rem;
 }
 
-/* ---------- Subject Bars ---------- */
 .subject-bars {
     display: flex;
     flex-direction: column;
@@ -533,7 +511,6 @@ footer {
     min-width: 48px;
 }
 
-/* Subject bar colors */
 .bar-math {
     background: linear-gradient(90deg, #7c5cfc, #a78bfa);
 }
@@ -554,7 +531,6 @@ footer {
     background: linear-gradient(90deg, #34d399, #6ee7b7);
 }
 
-/* ---------- Student Cards ---------- */
 .student-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -670,7 +646,6 @@ footer {
     font-weight: 600;
 }
 
-/* ---------- All Students Table ---------- */
 .table-wrapper {
     overflow-x: auto;
     border-radius: var(--radius-sm);
@@ -741,7 +716,6 @@ footer {
     color: #fff;
 }
 
-/* ---------- Highlights Grid ---------- */
 .highlights-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -787,7 +761,6 @@ footer {
     margin-top: 4px;
 }
 
-/* ---------- Empty State ---------- */
 .empty-state {
     text-align: center;
     padding: 24px;
@@ -795,7 +768,6 @@ footer {
     font-style: italic;
 }
 
-/* ---------- Footer ---------- */
 #app-footer {
     text-align: center;
     padding: 32px 24px;
@@ -804,7 +776,6 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
     .logo h1 {
         font-size: 1.5rem;
@@ -849,4 +820,5 @@ footer {
     .highlights-grid {
         grid-template-columns: 1fr;
     }
+
 }
