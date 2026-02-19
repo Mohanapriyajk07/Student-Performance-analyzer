@@ -1,15 +1,8 @@
-/**
- * Student Performance Analyzer — Frontend Logic
- * Handles CSV upload, API communication, and results rendering.
- */
-
 (() => {
     "use strict";
 
-    // ——— Configuration ———
     const API_URL = "http://127.0.0.1:5000/api/analyze";
 
-    // ——— DOM References ———
     const uploadForm = document.getElementById("upload-form");
     const fileInput = document.getElementById("csv-file-input");
     const dropZone = document.getElementById("drop-zone");
@@ -22,10 +15,8 @@
     const errorMessage = document.getElementById("error-message");
     const resultsSection = document.getElementById("results-section");
 
-    // ——— State ———
     let selectedFile = null;
 
-    // ——— File selection helpers ———
     function setFile(file) {
         if (!file) return;
         if (!file.name.toLowerCase().endsWith(".csv")) {
@@ -48,7 +39,6 @@
         analyzeBtn.disabled = true;
     }
 
-    // ——— Error handling ———
     function showError(msg) {
         errorMessage.textContent = msg;
         errorMessage.classList.remove("hidden");
@@ -58,7 +48,6 @@
         errorMessage.classList.add("hidden");
     }
 
-    // ——— Events: File input / drag-drop ———
     fileInput.addEventListener("change", () => setFile(fileInput.files[0]));
     clearFileBtn.addEventListener("click", clearFile);
 
@@ -79,12 +68,10 @@
         }
     });
 
-    // ——— Form submit ———
     uploadForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         if (!selectedFile) return;
 
-        // UI loading state
         analyzeBtn.disabled = true;
         btnText.classList.add("hidden");
         btnLoader.classList.remove("hidden");
@@ -118,10 +105,6 @@
         }
     });
 
-    // ======================================================================
-    //  RENDER FUNCTIONS
-    // ======================================================================
-
     function renderResults(data) {
         renderSummaryCards(data);
         renderSubjectBars(data.subjectAverages);
@@ -133,7 +116,6 @@
         resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    // — Summary stat cards —
     function renderSummaryCards(data) {
         document.getElementById("stat-total").textContent = data.totalStudents;
         document.getElementById("stat-avg").textContent = data.classAverage + "%";
@@ -141,7 +123,6 @@
         document.getElementById("stat-risk-count").textContent = data.atRiskStudents.length;
     }
 
-    // — Subject bar chart —
     function renderSubjectBars(subjectAverages) {
         const container = document.getElementById("subject-bars");
         container.innerHTML = "";
@@ -174,8 +155,7 @@
             row.appendChild(label);
             row.appendChild(track);
             container.appendChild(row);
-
-            // Animate after paint
+            
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     fill.style.width = Math.min(avg, 100) + "%";
@@ -184,7 +164,6 @@
         }
     }
 
-    // — Student cards (top & at-risk) —
     function renderStudentCards(containerId, students, emptyId) {
         const container = document.getElementById(containerId);
         const emptyMsg = document.getElementById(emptyId);
@@ -243,7 +222,6 @@
         });
     }
 
-    // — All students table —
     function renderAllStudentsTable(students) {
         const tbody = document.getElementById("all-students-body");
         tbody.innerHTML = "";
@@ -271,7 +249,6 @@
         });
     }
 
-    // — Highlights —
     function renderHighlights(data) {
         const container = document.getElementById("highlights");
         container.innerHTML = "";
@@ -322,7 +299,6 @@
         });
     }
 
-    // ——— Helpers ———
     function gradeToClass(grade) {
         const map = { "A+": "grade-ap", A: "grade-a", B: "grade-b", C: "grade-c", D: "grade-d", E: "grade-e", F: "grade-f" };
         return map[grade] || "grade-c";
@@ -350,3 +326,4 @@
         return div.innerHTML;
     }
 })();
+
